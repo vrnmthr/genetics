@@ -9,14 +9,17 @@ def pairwise(iterable):
 
 
 class DiscreteSimulation:
-    def __init__(self, init_population, mutation_mask, crossover_mask,
-            select_breeders, elite_size, fitness_function, num_breeders, reproduction_rate):
+    def __init__(self, init_population, mutate, crossover,
+                 select_breeders, elite_size, fitness_function, num_breeders, reproduction_rate):
 
         self.generation = 0
         self.population = init_population
         self.population_size = len(init_population)
-        self.mutation_mask = mutation_mask
-        self.crossover_mask = crossover_mask
+        # func(DNA,...) = DNA; performs randomized mutation on a single piece and returns it
+        self.mutate = mutate
+        # func(p1,p2) = list[DNA]; performs crossover and returns any number of children
+        self.crossover = crossover
+        # number of breeders to select for the next generation
         self.num_breeders = num_breeders
         # func(list[tuple[score,population_member]], number) = list[member]
         # selects number individuals to breed from the list
@@ -76,13 +79,10 @@ class DiscreteSimulation:
             children = 0
             while children < self.reproduction_rate:
                 # crossover parents
-                mask = self.crossover_mask(parent1.total_length())
-                for child in parent1.combine(parent2, mask):
+                for child in self.crossover(parent1, parent2):
                     # mutate
                     if children < self.reproduction_rate:
-                        #MUTATION SHOULD BE A FUNCTION OF MORE VARIABLES HERE
-                        mutation = self.mutation_mask(child.total_length())
-                        yield child.mutate(mutation)
+                        yield self.mutate(child)
                         children += 1
                     else:
                         break
