@@ -2,35 +2,43 @@ from collections.abc import Sequence
 
 def pairwise(iterable):
     '''
-    Given an iterable, yield the items in it in pairs. For instance:
-    
-        list(pairwise([1,2,3,4])) == [(1,2), (3,4)]
+    Given an iterable, yield the items in it in pairs. For instance: list(pairwise([1,2,3,4])) == [(1,2), (3,4)]
     '''
     x = iter(iterable)
     return zip(x, x)
 
 
 class DiscreteSimulation:
-    def __init__(self, population_size, mutation_mask, crossover_mask,
-            selection_function, elite_size,
-            initial_generator, fitness_function):
-        self.population_size = population_size
+    def __init__(self, init_population, mutation_mask, crossover_mask,
+            select_breeders, elite_size, fitness_function, num_breeders, reproduction_rate):
+
+        self.generation = 0
+        self.population = init_population
+        self.population_size = len(init_population)
         self.mutation_mask = mutation_mask
         self.crossover_mask = crossover_mask
-        self.selection_function = selection_function
+        self.num_breeders = num_breeders
+        # func(list[tuple[score,population_member]], number) = list[member]
+        # selects number individuals to breed from the list
+        self.select_breeders = select_breeders
+        # number of children produced by every *couple*
+        self.reproduction_rate = reproduction_rate
+        # number that remains exactly the same from one generation to the next
         self.elite_size = elite_size
-        self.initial_generator = initial_generator
+        # def(member) = num :: scoring function for a given member of population
         self.fitness_function = fitness_function
 
-        self.parents_per_selection = population_size - elite_size
+        if elite_size + num_breeders/2*reproduction_rate != self.population_size:
+            raise ValueError("Population size is inconsistent with given parameters")
 
-    def parents(self, scored_population):
+    def find_parents(self, scored_population):
         '''
-        Given a scored population, use the selection function to find parents
+        :param scored_population: scored_population to use to select breeders
+        :return: List[members] of the population that are to be bred
         '''
-        return self.selection_function(
+        return self.select_breeders(
             scored_population,
-            self.parents_per_selection)
+            self.num_breeders)
 
     def find_scores(self, population):
         '''
@@ -40,36 +48,51 @@ class DiscreteSimulation:
         for member in population:
             yield self.fitness_function(member), member
 
-    def initial_population(self):
-        '''
-        Create an initial populaton
-        '''
-        return [self.initial_generator() for _ in
-                    range(self.population_size)]
+    # def initial_population(self):
+    #     '''
+    #     Create an initial populaton
+    #     '''
+    #     return [self.initial_generator() for _ in
+    #                 range(self.population_size)]
 
-    def step_generator(self, population):
+    def step_generator(self):
         '''
         Run a whole genetic step on a scored population, and yield the new
         population members
         '''
-        # Score and sort population
-        scored_population = sorted(self.find_scores(population), reverse=True,
+
+        # Score and sort current population
+        scored_population = sorted(self.find_scores(self.population), reverse=True,
             key=lambda member: member[0])
 
-        # Yield the elite elements
-        yield from scored_population[:self.elite_size]
-        # Generate parents
-        for parent1, parent2 in pairwise(self.parents(scored_population)):
-            # crossover parents
-            mask = self.crossover_mask(parent1.total_length())
-            for child in parent1.combine(parent2, mask):
-                # mutate
-                yield child.mutate(self.mutation_mask(child.total_length()))
+        # take elite members and keep them for subsequent trials
+        for elite in scored_population[:self.elite_size]:
+            yield elite[1]
 
-    def step(self, population):
+        # Generate parents
+        couples = pairwise(self.find_parents(scored_population))
+        for parent1, parent2 in couples:
+            # generate number of children
+            children = 0
+            while children < self.reproduction_rate:
+                # crossover parents
+                mask = self.crossover_mask(parent1.total_length())
+                for child in parent1.combine(parent2, mask):
+                    # mutate
+                    if children < self.reproduction_rate:
+                        #MUTATION SHOULD BE A FUNCTION OF MORE VARIABLES HERE
+                        mutation = self.mutation_mask(child.total_length())
+                        yield child.mutate(mutation)
+                        children += 1
+                    else:
+                        break
+
+    def step(self):
         '''
         Run a genetic step on a population and return the new population as a
         list.
         '''
-        return list(self.step_generator(population))
+        self.generation += 1
+        self.population = list(self.step_generator())
+        return self.population
 

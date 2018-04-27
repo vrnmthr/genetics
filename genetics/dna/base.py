@@ -8,7 +8,6 @@ class DNABase(metaclass=abc.ABCMeta):
     '''
     __slots__ = ()
 
-    #TODO: Add helpers for calling type(self)(...) everywhere
     @abc.abstractmethod
     def mutate(self, mask):
         '''

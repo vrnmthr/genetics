@@ -15,7 +15,7 @@ class DNABaseBinary(DNABase):
 
     def __init__(self, bits=None):
         if bits is None:
-            self.bits = [bit() for _ in range(self.static_length)]
+            self.bits = [self.bit() for _ in range(self.static_length)]
 
         #Allows for initializers of the form '1000101'
         elif isinstance(bits, str):
@@ -52,6 +52,7 @@ class DNABaseBinary(DNABase):
 
     def __getitem__(self, index):
         return self.bits[index]
+
 
 class DNABinary(DNABaseBinary):
     '''

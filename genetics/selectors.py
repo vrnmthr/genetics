@@ -4,9 +4,17 @@ import itertools
 
 
 def tournament(tournament_size):
+    '''
+    :param tournament_size: Number of members it compares at a given time
+    :return: a function that given a population and a number returns the best
+    number of members of the population (using the max function)
+    '''
     def tournament_selector(population, num_parents):
         for _ in range(num_parents):
-            yield max(random.sample(population, tournament_size))
+            sample = random.sample(population, tournament_size)
+            best = max(sample, key= lambda x:x[1].score())
+            # return a single member, not the entire tuple
+            yield best[1]
     return tournament_selector
 
 
