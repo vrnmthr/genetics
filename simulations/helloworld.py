@@ -1,6 +1,8 @@
 import string
 import random
 
+import sys
+sys.path.append("../")
 import genetics
 
 # letters is a set that contains all values in the state space of string characters
@@ -9,7 +11,7 @@ for i in range(10):
     letters += str(i)
 
 # optimal solution
-solution = 'ankvag69'
+solution = 'stimulated analing'
 
 # any subclass of DNAComponent represents a single value in the DNA
 # this could be a bit, in our case a city, etc. Must declare a mutate_value function
