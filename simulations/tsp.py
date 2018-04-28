@@ -34,7 +34,7 @@ def generate_random_complete_with_solution(nodes):
         #print("adding {},{}".format(i,(i+1)%nodes))
         g.add_edge(i, (i+1)%nodes, weight = random.randint(0, threshold))
 
-    solution = list(g.edges())
+    # solution = list(g.edges())
 
     # add the rest of the edges with weights higher than threshold
     for i in range(nodes):
@@ -43,7 +43,7 @@ def generate_random_complete_with_solution(nodes):
                 #print("adding {},{}".format(i,j))
                 g.add_edge(i, j, weight = threshold + random.randint(1, 100))
 
-    return g, solution
+    return g, [i for i in range(nodes)]
 
 def mutate_swap_lambda(p, func):
     '''
@@ -90,22 +90,28 @@ def PMX_crossover(p1, p2):
     # performs the swaps
     for i in range(len(p1)):
         if i < start or i >= end:
+            # count1 = 0
+            # count2 = 0
             while child_1[i] in swap_1:
-                child_1[i] = swap_1[p1[i]]
+                # count1 += 1
+                # if count1 > 10:
+                #     print("looping")
+                child_1[i] = swap_1[child_1[i]]
             while child_2[i] in swap_2:
-                child_2[i] = swap_2[p2[i]]
+                # count2 += 1
+                # if count2 > 10:
+                #     print("looping")
+                child_2[i] = swap_2[child_2[i]]
 
     return child_1, child_2
 
 def score(dna):
     total = 0
-    print(graph.edges)
+    #print(graph.edges)
     for i in range(len(dna)):
         u = dna[i]
         v = dna[(i+1) % nodes]
-        es = graph.edges
-        e = graph.edges()[u,v]
-        total += e['weight']
+        total += graph.edges()[u,v]['weight']
     return total
 
 def generate_random_population(size):
@@ -131,7 +137,7 @@ sim = genetics.DiscreteSimulation(
     init_population= generate_random_population(10),
     mutate=mutate_swap_lambda(0.05, lambda x,y: x),  # Mutate at a 5% rate
     crossover=PMX_crossover,
-    select_breeders=genetics.tournament(2),
+    select_breeders=genetics.tournament(5),
     elite_size=2,
     reproduction_rate=2,
     fitness_function=score,
@@ -139,18 +145,40 @@ sim = genetics.DiscreteSimulation(
 
 def dna_stats(population):
     '''Best DNA, best score, average score'''
-    best_dna = max(population, key=lambda x: score(x))
+    best_dna = min(population, key=lambda x: score(x))
     best_score = score(best_dna)
     average_score = sum(score(member) for member in population) / len(population)
 
     return best_dna, best_score, average_score
 
+def is_solution(dna):
+    # tests for list equality under rotation
+
+    def equal_under_rotation(sol):
+        if len(dna) != len(sol):
+            return False
+        if len(dna) < 1:
+            return False
+        first = dna[0]
+        first_pos = sol.index(first)
+
+        for i in range(len(dna)):
+            if dna[i] != sol[(i+first_pos) % len(dna)]:
+                return False
+        return True
+
+    straight = equal_under_rotation(solution)
+    solution.reverse()
+    reverse = equal_under_rotation(solution)
+    return straight or reverse
+
 while True:
     best, best_score, average_score = dna_stats(sim.population)
 
-    print('{} | Average score: {}'.format(str(best), average_score))
+    print('{} | Best score: {} | Average score: {}'.format(str(best), best_score, average_score))
 
-    if str(best) == solution:
+    if is_solution(best):
+        print("Solution found after {} iterations".format(sim.generation))
         break
 
     population = sim.step()

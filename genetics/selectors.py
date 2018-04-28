@@ -12,7 +12,7 @@ def tournament(tournament_size):
     def tournament_selector(population, num_parents):
         for _ in range(num_parents):
             sample = random.sample(population, tournament_size)
-            best = max(sample, key= lambda x:x[0])
+            best = min(sample, key= lambda x:x[0])
             # return a single member, not the entire tuple
             yield best[1]
     return tournament_selector
