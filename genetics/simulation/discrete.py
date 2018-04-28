@@ -51,25 +51,20 @@ class DiscreteSimulation:
         for member in population:
             yield self.fitness_function(member), member
 
-    # def initial_population(self):
-    #     '''
-    #     Create an initial populaton
-    #     '''
-    #     return [self.initial_generator() for _ in
-    #                 range(self.population_size)]
-
     def step_generator(self):
         '''
         Run a whole genetic step on a scored population, and yield the new
         population members
         '''
 
+        #new_population = []
         # Score and sort current population
-        scored_population = sorted(self.find_scores(self.population), reverse=True,
+        scored_population = sorted(self.find_scores(self.population), reverse=False,
             key=lambda member: member[0])
 
         # take elite members and keep them for subsequent trials
         for elite in scored_population[:self.elite_size]:
+            #new_population.append(elite[1])
             yield elite[1]
 
         # Generate parents
@@ -82,7 +77,8 @@ class DiscreteSimulation:
                 for child in self.crossover(parent1, parent2):
                     # mutate
                     if children < self.reproduction_rate:
-                        yield self.mutate(child)
+                        self.mutate(child, self.generation)
+                        yield child
                         children += 1
                     else:
                         break
