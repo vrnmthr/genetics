@@ -55,13 +55,27 @@ def mutate_swap_lambda(p, func):
     '''
     def mutate(dna, iter):
         prob = func(p, iter)
+
+        def swap(i,j):
+            temp = dna[i]
+            dna[i] = dna[j]
+            dna[j] = temp
+
         # for each element in the dna, swap it with random probability with any other element
         for i in range(len(dna)):
             if random.random() < prob:
-                swap = random.randint(0, len(dna) - 1)
-                temp = dna[i]
-                dna[i] = dna[swap]
-                dna[swap] = temp
+                other = random.randint(0, len(dna) - 1)
+                swap(i, other)
+
+        # reverse a random section of the list (start,end) inclusive
+        if random.random() < prob:
+            start = random.randint(0, len(dna) - 1)
+            end = start + random.randint(0, len(dna) - start - 1)
+            while start < end:
+                swap(start, end)
+                start +=1
+                end -= 1
+
     return mutate
 
 def PMX_crossover(p1, p2):
@@ -122,7 +136,7 @@ def generate_random_population(size):
         init_population.append(dna)
     return init_population
 
-nodes = 10
+nodes = 20
 VISUALIZE = False
 graph, solution = generate_random_complete_with_solution(nodes)
 if VISUALIZE:
@@ -134,14 +148,14 @@ if VISUALIZE:
     plt.show()
 
 sim = genetics.DiscreteSimulation(
-    init_population= generate_random_population(10),
+    init_population= generate_random_population(100),
     mutate=mutate_swap_lambda(0.05, lambda x,y: x),  # Mutate at a 5% rate
     crossover=PMX_crossover,
-    select_breeders=genetics.tournament(5),
+    select_breeders=genetics.tournament(2),
     elite_size=2,
     reproduction_rate=2,
     fitness_function=score,
-    num_breeders=8)
+    num_breeders=98)
 
 def dna_stats(population):
     '''Best DNA, best score, average score'''
@@ -174,8 +188,14 @@ def is_solution(dna):
 
 while True:
     best, best_score, average_score = dna_stats(sim.population)
+    verbose = False
 
-    print('{} | Best score: {} | Average score: {}'.format(str(best), best_score, average_score))
+    if not verbose:
+        #print(sim.generation)
+        if sim.generation % 500 == 0:
+            print('{} | Best score: {} | Average score: {}'.format(str(best), best_score, average_score))
+    else:
+        print('{} | Best score: {} | Average score: {}'.format(str(best), best_score, average_score))
 
     if is_solution(best):
         print("Solution found after {} iterations".format(sim.generation))
