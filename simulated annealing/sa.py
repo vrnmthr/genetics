@@ -4,6 +4,7 @@ from random import *
 import random
 import networkx as nx
 
+
 def generate_random_complete(nodes):
     '''
     :return: (g, None), g = Random complete weighted graph
@@ -12,6 +13,7 @@ def generate_random_complete(nodes):
     for (u,v,d) in g.edges(data=True):
         d['weight'] = random.randint(0,100)
     return g, None
+
 
 def generate_random_complete_with_solution(nodes):
     '''
@@ -37,106 +39,67 @@ def generate_random_complete_with_solution(nodes):
 
     return g, [i for i in range(nodes)]
 
-def generate(statespace):
-    points = {}
-    data = [[uniform(0,10) for _ in range(len(statespace))], [uniform(0,10) for _ in range(len(statespace))]]
-    for i in range(len(statespace)):
-        if statespace[i] not in points:
-            points[statespace[i]] = (data[0][i],data[1][i])
-    return points
 
-statespace = [1,2,3,4,5]
-state = [1,4,5,3,2,1]
-
-points = generate(statespace)
-print(points)
-
-def distance(a, b):
-    """Calculates distance between two latitude-longitude coordinates."""
-    ans = (a[0] - b[0])**2 + (a[1] - b[1])**2
-    return math.sqrt(ans)
-
-def energy(points,state): #fitness function
-    energy = 0
-    for i in range(len(state) - 1):
-        a = points[state[i]]
-        b = points[state[i+1]]
-        dist = distance(a,b)
-        energy += dist
-    return energy
-
-def annealing(state, statespace, T):
-    """Minimizes the energy of a system by simulated annealing.
-    Parameters
-    state : an initial arrangement of the system
-    Returns
-    (state, energy): the best state and energy found.
+def generator():
     """
-    initial = T
-    #print(initial,'initial')
+    :return: randomly ordered list of integers from 0 - nodes
+    """
+    sample = [i for i in range(nodes)]
+    random.shuffle(sample)
+    return sample
+
+
+def energy(dna):
+    total = 0
+    for i in range(len(dna)):
+        u = dna[i]
+        v = dna[(i+1) % nodes]
+        total += graph.edges()[u,v]['weight']
+    return total
+
+nodes = 10
+VISUALIZE = False
+graph, solution = generate_random_complete_with_solution(nodes)
+
+
+def annealing(generator, energy, T):
+    '''
+    :param generator: function that produces random items in the statespace
+    :param energy: function that scores a given item in the statespace
+    :param T: starting energy
+    :return: best value
+    '''
+    state = generator()
     iteration = 0
-    #print(iteration,'iteration is zero')
-
-    #Tfactor = -1/(math.log(1/T))
-
-
-
     accepts = 0
     improves = 0
 
-    new_statespace = copy.deepcopy(statespace)
-    new_statespace.remove(state[0])
-    m = len(new_statespace)
-
     # Attempt moves to new states
     while T > 0 and iteration < 1000:
-        currentE = energy(points,state)
+        currentE = energy(state)
+        print("State {}: {} | Energy: {} | T: ".format(iteration, state, currentE, T))
 
-        new_state = copy.deepcopy(state)
-        new_statespace = copy.deepcopy(statespace)
-        new_statespace.remove(state[0])
-        m = len(new_statespace)
-
-        for i in range(1,m + 1):
-            new_state[i] = random.choice(new_statespace)
-            new_statespace.remove(new_state[i])
-
-
-        iteration += 1
-        #print(iteration,'this is first iteration')
-
-        newE = energy(points,new_state)
-
+        new_state = generator()
+        newE = energy(new_state)
         dE = newE - currentE
-        #print(currentE,newE,dE)
-        #print()
 
         if dE == 0:
             accepts += 1
             state = new_state
         elif dE < 0:
+            # new state has smaller energy
             state = new_state
             accepts += 1
             improves += 1
         else:
-            #print(dE)
             acceptance = math.exp((-dE)/T)
             if acceptance > uniform(0,1):
-                #print(acceptance)
-                #print()
                 accepts += 1
                 state = new_state
-            #print()
-        #print(new_state,newE)
 
-        #print(state)
-        Tfactor = initial/(math.log(1+iteration))
-        T = Tfactor
-        #print(iteration,'this is iteration')
-        #print(T,'This is time')
+        T /= math.log(1 + iteration)
+        iteration += 1
 
-    print(accepts,improves)
-    print(state, currentE)
-    return state, currentE
+    return state, energy(state)
 
-annealing(state,statespace,5)
+annealing(generator,energy,1)

@@ -121,7 +121,6 @@ def PMX_crossover(p1, p2):
 
 def score(dna):
     total = 0
-    #print(graph.edges)
     for i in range(len(dna)):
         u = dna[i]
         v = dna[(i+1) % nodes]
