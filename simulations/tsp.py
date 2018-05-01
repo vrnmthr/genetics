@@ -136,7 +136,7 @@ def generate_random_population(size):
         init_population.append(dna)
     return init_population
 
-nodes = 20
+nodes = 10
 VISUALIZE = False
 graph, solution = generate_random_complete_with_solution(nodes)
 if VISUALIZE:
@@ -188,7 +188,7 @@ def is_solution(dna):
 
 while True:
     best, best_score, average_score = dna_stats(sim.population)
-    verbose = False
+    verbose = True
 
     if not verbose:
         #print(sim.generation)
