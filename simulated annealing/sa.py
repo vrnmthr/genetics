@@ -3,6 +3,7 @@ import math
 from random import *
 import random
 import networkx as nx
+import matplotlib.pyplot as plt
 
 
 def generate_random_complete(nodes):
@@ -57,49 +58,86 @@ def energy(dna):
         total += graph.edges()[u,v]['weight']
     return total
 
-nodes = 10
-VISUALIZE = False
-graph, solution = generate_random_complete_with_solution(nodes)
+
+def get_neighbor(soln):
+    '''
+    :param soln: item to get the neighbor of
+    :return: neighbor of this item
+    '''
+    # nbor = copy.deepcopy(soln)
+    #
+    # i = random.randint(0, len(soln) - 1)
+    # j = i + random.randint(0, len(soln) - i - 1)
+    # temp = nbor[i]
+    # nbor[i] = nbor[j]
+    # nbor[j] = temp
+    # return nbor
+
+    # reverses from start (inclusive) to end (non-inclusive)
+    start = random.randint(0, len(soln) - 1)
+    end = start + random.randint(0, len(soln) - start - 1)
+
+    nbor = copy.deepcopy(soln)
+    while start < end:
+        temp = nbor[start]
+        nbor[start] = nbor[end]
+        nbor[end] = temp
+        start += 1
+        end -= 1
+    return nbor
 
 
-def annealing(generator, energy, T):
+def annealing(state, generator, energy, init):
     '''
     :param generator: function that produces random items in the statespace
     :param energy: function that scores a given item in the statespace
-    :param T: starting energy
+    :param init: starting energy
     :return: best value
     '''
-    state = generator()
-    iteration = 0
+    T = init
+    iteration = 1
     accepts = 0
     improves = 0
 
     # Attempt moves to new states
-    while T > 0 and iteration < 1000:
+    while T > 0 and iteration < T_ITERS:
         currentE = energy(state)
-        print("State {}: {} | Energy: {} | T: ".format(iteration, state, currentE, T))
+        solutions.append(currentE)
 
-        new_state = generator()
+        if not VERBOSE:
+            if iteration % FREQ == 0:
+                print("State {}: {} | Energy: {} | T: {}".format(iteration, state, currentE, T))
+        else:
+            print("State {}: {} | Energy: {} | T: {}".format(iteration, state, currentE, T))
+
+        new_state = generator(state)
         newE = energy(new_state)
         dE = newE - currentE
 
         if dE == 0:
-            accepts += 1
             state = new_state
         elif dE < 0:
             # new state has smaller energy
             state = new_state
-            accepts += 1
-            improves += 1
         else:
             acceptance = math.exp((-dE)/T)
             if acceptance > uniform(0,1):
-                accepts += 1
                 state = new_state
 
-        T /= math.log(1 + iteration)
+        T = init/math.log(1 + iteration)
         iteration += 1
 
     return state, energy(state)
 
-annealing(generator,energy,1)
+nodes = 20
+graph, solution = generate_random_complete_with_solution(nodes)
+solutionE = energy(solution)
+VERBOSE = False
+FREQ = 1000
+T_ITERS = 7500
+solutions = []
+approximation, approxE = annealing(state=generator(), generator=get_neighbor, energy=energy, init=45)
+print("Sol energy: {} | Approx. energy: {} | % diff: {}".format(solutionE, approxE, float(approxE-solutionE)/solutionE*100))
+plt.plot(solutions)
+plt.show()
+

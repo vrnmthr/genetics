@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b4477b6d-97d0-443a-9a1f-3792ed9b0d05" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/simulated annealing/sa.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/genetics.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/genetics.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="b4477b6d-97d0-443a-9a1f-3792ed9b0d05" name="Default" comment="Final copy of SA">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulations/tsp.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulations/tsp.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/simulated annealing/sa.py" beforeDir="false" afterPath="$PROJECT_DIR$/simulated annealing/sa.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -19,19 +16,25 @@
     <SUITE FILE_PATH="coverage/genetics$tsp.coverage" NAME="tsp Coverage Results" MODIFIED="1525097208042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulations" />
     <SUITE FILE_PATH="coverage/genetics$helloworld.coverage" NAME="helloworld Coverage Results" MODIFIED="1524936241289" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulations" />
     <SUITE FILE_PATH="coverage/genetics$helloworld__1_.coverage" NAME="helloworld (1) Coverage Results" MODIFIED="1524936246310" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulations" />
-    <SUITE FILE_PATH="coverage/genetics$sa.coverage" NAME="sa Coverage Results" MODIFIED="1525208653543" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulated annealing" />
+    <SUITE FILE_PATH="coverage/genetics$sa.coverage" NAME="sa Coverage Results" MODIFIED="1525241342689" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/simulated annealing" />
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="genetics" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="525">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="sa.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/simulated annealing/sa.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+            <state relative-caret-position="363">
+              <caret line="143" selection-start-line="143" selection-end-line="143" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#101#349#0" />
-                <element signature="e#406#1221#0" />
+                <element signature="e#156#404#0" />
+                <element signature="e#462#1277#0" />
+                <element signature="e#1301#1458#0" />
+                <element signature="e#1482#1634#0" />
+                <element signature="e#1665#2330#0" />
               </folding>
             </state>
           </provider>
@@ -40,17 +43,14 @@
       <file leaf-file-name="tsp.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/simulations/tsp.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="14" selection-start-line="14" selection-end-line="46" />
+            <state relative-caret-position="578">
+              <caret line="133" column="27" selection-start-line="132" selection-start-column="8" selection-end-line="133" selection-end-column="27" />
               <folding>
                 <element signature="e#0#13#0" expanded="true" />
                 <element signature="e#312#560#0" />
                 <element signature="e#617#1432#0" />
                 <element signature="e#1471#2552#0" />
                 <element signature="e#2585#3658#0" />
-                <element signature="e#3680#3856#0" />
-                <element signature="e#3900#4077#0" />
-                <element signature="e#5062#5592#0" />
               </folding>
             </state>
           </provider>
@@ -67,6 +67,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="ccf9ad956cb20246558ea80bccc7da7ca7134eac" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -92,8 +97,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-13" />
-    <option name="y" value="-13" />
+    <option name="x" value="-14" />
+    <option name="y" value="-14" />
     <option name="width" value="1855" />
     <option name="height" value="1057" />
   </component>
@@ -229,9 +234,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.sa" />
-        <item itemvalue="Python.tsp" />
         <item itemvalue="Python.helloworld (1)" />
+        <item itemvalue="Python.tsp" />
         <item itemvalue="Python.helloworld" />
+        <item itemvalue="Python.sa" />
       </list>
     </recent_temporary>
   </component>
@@ -267,7 +273,14 @@
       <option name="project" value="LOCAL" />
       <updated>1524935472959</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Final copy of SA">
+      <created>1525243896022</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1525243896022</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView">
@@ -285,18 +298,18 @@
     <layout>
       <window_info anchor="bottom" id="TODO" order="10" weight="0.32932073" />
       <window_info anchor="bottom" id="Event Log" order="0" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="1" weight="0.32932073" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="6" weight="0.29685158" />
+      <window_info active="true" anchor="bottom" id="Version Control" order="1" visible="true" weight="0.32833582" />
       <window_info anchor="bottom" id="Python Console" order="2" weight="0.3277487" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.2983663" />
       <window_info anchor="bottom" id="Terminal" order="3" weight="0.28586388" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.14446793" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49887133" visible="true" weight="0.1465821" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="1" />
-      <window_info anchor="right" id="SciView" />
+      <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="7" visible="true" weight="0.3358321" />
+      <window_info anchor="bottom" id="Debug" order="7" weight="0.3358321" />
+      <window_info id="Favorites" order="0" sideWeight="0.5011287" side_tool="true" weight="0.1465821" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="4" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="3" weight="0.25" />
       <window_info anchor="right" id="Commander" order="2" weight="0.4" />
@@ -310,6 +323,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -317,23 +356,19 @@
     <MESSAGE value="Added proper import path" />
     <MESSAGE value="Reformatted discrete.py" />
     <MESSAGE value="Got TSP working" />
-    <option name="LAST_COMMIT_MESSAGE" value="Got TSP working" />
+    <MESSAGE value="Final copy of SA" />
+    <option name="LAST_COMMIT_MESSAGE" value="Final copy of SA" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/simulations/tsp.py</url>
-          <line>171</line>
+          <line>170</line>
           <option name="timeStamp" value="29" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/simulated annealing/sa.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="32" />
+      <option name="time" value="36" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="PythonConfigurationType">
@@ -342,6 +377,35 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/simulated annealing/sa.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#156#404#0" />
+            <element signature="e#462#1277#0" />
+            <element signature="e#1301#1458#0" />
+            <element signature="e#1482#1634#0" />
+            <element signature="e#1665#2330#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulations/tsp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" selection-start-line="14" selection-end-line="46" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#312#560#0" />
+            <element signature="e#617#1432#0" />
+            <element signature="e#1471#2552#0" />
+            <element signature="e#2585#3658#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/genetics/cross.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
@@ -360,9 +424,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -376,9 +437,6 @@
             <element signature="e#617#1432#0" />
             <element signature="e#1471#2552#0" />
             <element signature="e#2585#3658#0" />
-            <element signature="e#3680#3856#0" />
-            <element signature="e#3900#4077#0" />
-            <element signature="e#5062#5592#0" />
           </folding>
         </state>
       </provider>
@@ -401,9 +459,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
           <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -425,9 +480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="18">
           <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -441,15 +493,9 @@
             <element signature="e#617#1432#0" />
             <element signature="e#1471#2552#0" />
             <element signature="e#2585#3658#0" />
-            <element signature="e#3680#3856#0" />
-            <element signature="e#3900#4077#0" />
-            <element signature="e#5062#5592#0" />
           </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/genetics/simulation/discrete.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/genetics/selectors.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -462,9 +508,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
           <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -478,9 +521,6 @@
             <element signature="e#617#1432#0" />
             <element signature="e#1471#2552#0" />
             <element signature="e#2585#3658#0" />
-            <element signature="e#3680#3856#0" />
-            <element signature="e#3900#4077#0" />
-            <element signature="e#5062#5592#0" />
           </folding>
         </state>
       </provider>
@@ -503,9 +543,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="29">
           <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -527,9 +564,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="783">
           <caret line="30" column="22" selection-start-line="30" selection-start-column="22" selection-end-line="30" selection-end-column="22" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -551,9 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="29">
           <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -567,9 +598,6 @@
             <element signature="e#617#1432#0" />
             <element signature="e#1471#2552#0" />
             <element signature="e#2585#3658#0" />
-            <element signature="e#3680#3856#0" />
-            <element signature="e#3900#4077#0" />
-            <element signature="e#5062#5592#0" />
           </folding>
         </state>
       </provider>
@@ -625,9 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/genetics/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/networkx/generators/random_graphs.py" />
     <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/networkx/drawing/nx_pylab.py" />
     <entry file="file://C:/ProgramData/Anaconda3/Lib/site-packages/networkx/drawing/layout.py" />
@@ -653,9 +678,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -670,9 +692,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -680,23 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" selection-start-line="8" selection-end-line="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/simulations/tsp.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" selection-start-line="14" selection-end-line="46" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-            <element signature="e#312#560#0" />
-            <element signature="e#617#1432#0" />
-            <element signature="e#1471#2552#0" />
-            <element signature="e#2585#3658#0" />
-            <element signature="e#3680#3856#0" />
-            <element signature="e#3900#4077#0" />
-            <element signature="e#5062#5592#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -709,12 +711,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/simulated annealing/sa.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="47" column="24" lean-forward="true" selection-start-line="47" selection-start-column="24" selection-end-line="47" selection-end-column="24" />
+        <state relative-caret-position="363">
+          <caret line="143" selection-start-line="143" selection-end-line="143" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
-            <element signature="e#101#349#0" />
-            <element signature="e#406#1221#0" />
+            <element signature="e#156#404#0" />
+            <element signature="e#462#1277#0" />
+            <element signature="e#1301#1458#0" />
+            <element signature="e#1482#1634#0" />
+            <element signature="e#1665#2330#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/simulations/tsp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="578">
+          <caret line="133" column="27" selection-start-line="132" selection-start-column="8" selection-end-line="133" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+            <element signature="e#312#560#0" />
+            <element signature="e#617#1432#0" />
+            <element signature="e#1471#2552#0" />
+            <element signature="e#2585#3658#0" />
           </folding>
         </state>
       </provider>
